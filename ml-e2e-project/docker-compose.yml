@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    container_name: frontend_app
+
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      - INFERENCE_SERVICE_URL=http://inference-service:8000
+    depends_on:
+      - inference-service
+    container_name: backend_api
+
+  inference-service:
+    build: ./inference-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./inference-service/models:/app/models
+    container_name: ml_inference_api
+
+# Nota: En un entorno de desarrollo, los servicios se comunican
+# a través de la red de Docker Compose usando los nombres de servicio.

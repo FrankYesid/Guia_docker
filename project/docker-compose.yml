@@ -1,0 +1,29 @@
+version: '3.8'
+
+# Definición de los servicios que compondrán la aplicación
+services:
+  # Servicio para la API de inferencia de ML
+  api:
+    # Construye la imagen a partir del Dockerfile en el directorio actual (.)
+    build: .
+    # Mapea el puerto 8000 del host al puerto 8000 del contenedor
+    ports:
+      - "8000:8000"
+    # Monta el directorio local 'models' en '/app/models' dentro del contenedor.
+    # Esto permite actualizar los modelos sin tener que reconstruir la imagen.
+    volumes:
+      - ./models:/app/models
+    # Define variables de entorno para el servicio.
+    # Útil para configuraciones que cambian entre entornos (dev, prod).
+    environment:
+      - ENVIRONMENT=development
+      - LOG_LEVEL=info
+    # Nombre del contenedor para una fácil identificación
+    container_name: ml_api_service
+
+# Definición de volúmenes para persistir datos
+volumes:
+  # Aunque no se usa en este servicio simple, aquí se definirían
+  # volúmenes para bases de datos, logs, etc.
+  # Ejemplo:
+  # postgres_data:

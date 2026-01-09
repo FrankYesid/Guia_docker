@@ -1,0 +1,43 @@
+# k8s/inference-service-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inference-service-deployment
+  labels:
+    app: inference-service
+spec:
+  replicas: 2 # Empezar con 2 réplicas para alta disponibilidad
+  selector:
+    matchLabels:
+      app: inference-service
+  template:
+    metadata:
+      labels:
+        app: inference-service
+    spec:
+      containers:
+      - name: inference-api-container
+        image: your-docker-registry/inference-service:latest # Reemplazar con tu imagen
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "500m" # 0.5 CPU core
+            memory: "512Mi"
+          limits:
+            cpu: "1" # 1 CPU core
+            memory: "1Gi"
+---
+# k8s/inference-service-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: inference-service
+spec:
+  selector:
+    app: inference-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: ClusterIP # Exponer el servicio solo dentro del clúster

@@ -1,0 +1,13 @@
+# Dependencias de Python para el servicio de inferencia
+
+# Framework para la API
+fastapi
+
+# Servidor ASGI para FastAPI
+uvicorn
+
+# Librería para machine learning (solo el núcleo para inferencia)
+scikit-learn
+
+# Librería para cargar/guardar modelos (artefactos)
+joblib

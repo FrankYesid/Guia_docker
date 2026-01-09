@@ -1,0 +1,27 @@
+# k8s/ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: main-ingress
+  annotations:
+    # El tipo de Ingress Controller puede variar (nginx, traefik, etc.)
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: your-domain.com # Reemplazar con tu dominio
+    http:
+      paths:
+      - path: /api # Peticiones a /api van al backend
+        pathType: Prefix
+        backend:
+          service:
+            name: backend-service
+            port:
+              number: 80
+      - path: / # El resto del tráfico va al frontend
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service # Asumiendo un servicio para el frontend
+            port:
+              number: 80
