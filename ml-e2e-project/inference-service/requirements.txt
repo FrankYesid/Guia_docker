@@ -1,0 +1,12 @@
+# Framework para la API de inferencia
+fastapi
+
+# Servidor ASGI
+uvicorn
+
+# Librería de Machine Learning para la inferencia
+# Se asume un modelo de scikit-learn
+scikit-learn
+
+# Librería para cargar el artefacto del modelo
+joblib

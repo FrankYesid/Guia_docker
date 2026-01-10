@@ -1,0 +1,8 @@
+# Framework para la API de negocio
+fastapi
+
+# Servidor ASGI
+uvicorn
+
+# Librería para realizar peticiones HTTP al servicio de inferencia
+requests
