@@ -47,3 +47,4 @@ def predict(data: InputData):
     prediction = model.predict(input_features)
     
     return {"prediction": float(prediction[0])}
+ 
