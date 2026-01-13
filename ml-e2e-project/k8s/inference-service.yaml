@@ -1,4 +1,4 @@
-# k8s/inference-service-deployment.yaml
+# Inference Service: Deployment y Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: inference-api-container
-        image: your-docker-registry/inference-service:latest # Reemplazar con tu imagen
+        image: your-docker-registry/inference-service:latest # Reemplazar por imagen propia
         ports:
         - containerPort: 8000
         resources:
@@ -28,7 +28,7 @@ spec:
             cpu: "1" # 1 CPU core
             memory: "1Gi"
 ---
-# k8s/inference-service-service.yaml
+# Inference Service: Service (ClusterIP)
 apiVersion: v1
 kind: Service
 metadata:

@@ -1,4 +1,4 @@
-# k8s/backend-deployment.yaml
+# Backend: Deployment y Service
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,14 +17,14 @@ spec:
     spec:
       containers:
       - name: backend-api-container
-        image: your-docker-registry/backend-service:latest # Reemplazar con tu imagen
+        image: your-docker-registry/backend-service:latest # Reemplazar por imagen propia
         ports:
         - containerPort: 8080
         env:
         - name: INFERENCE_SERVICE_URL
-          value: "http://inference-service" # URL para comunicarse con el servicio de inferencia
+          value: "http://inference-service" # URL del servicio de inferencia
 ---
-# k8s/backend-service.yaml
+# Backend: Service (ClusterIP)
 apiVersion: v1
 kind: Service
 metadata:
