@@ -5,9 +5,9 @@ import os
 
 app = FastAPI(title="Backend Business API", version="1.0.0")
 
-# URL del servicio de inferencia
-# En Docker Compose: http://inference-service:8000
-# En Kubernetes: http://inference-service
+# URL del servicio de inferencia (ajustar por entorno)
+# Docker Compose: http://inference-service:8000
+# Kubernetes (ClusterIP/Ingress): http://inference-service
 INFERENCE_SERVICE_URL = os.getenv("INFERENCE_SERVICE_URL", "http://inference-service:8000")
 
 class UserInput(BaseModel):
@@ -25,15 +25,15 @@ def read_root():
 @app.post("/process-prediction")
 def process_prediction(data: UserInput):
     """
-    Recibe datos del usuario, valida, y llama al servicio de inferencia.
+    Recibe datos de entrada y delega la predicción al servicio de inferencia.
     """
     try:
-        # 1. Validación o lógica de negocio previa
+        # Validación/lógica previa
         print(f"Procesando petición para: {data}")
 
-        # 2. Llamada al servicio de inferencia
+        # Llamada al servicio de inferencia
         predict_url = f"{INFERENCE_SERVICE_URL}/predict"
-        # Enviamos los datos como dict, requests lo convierte a JSON
+        # Enviar datos como JSON
         response = requests.post(predict_url, json=data.dict(), timeout=5)
         
         if response.status_code != 200:
@@ -41,7 +41,7 @@ def process_prediction(data: UserInput):
             
         prediction_result = response.json()
         
-        # 3. Lógica post-predicción (ej. formateo, guardado en DB)
+        # Posprocesamiento (formateo/registro)
         result = {
             "input_summary": f"F1: {data.feature1}, F2: {data.feature2}",
             "prediction_raw": prediction_result["prediction"],

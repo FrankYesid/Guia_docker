@@ -25,12 +25,7 @@ function App() {
     setPrediction(null);
 
     try {
-      // En desarrollo local con docker-compose, el backend está en localhost:8080.
-      // En producción con k8s e Ingress, estaría bajo /api
-      // Aquí asumimos una configuración que puede requerir ajuste de proxy o variable de entorno.
-      // Para simplificar este ejemplo E2E, usaremos una ruta relativa asumiendo que el Ingress o Proxy maneja /api
-      
-      // NOTA: Si corres esto localmente sin nginx proxy, necesitarás apuntar a http://localhost:8080
+      // URL del backend (ajustar por entorno)
       const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080';
       
       const response = await axios.post(`${apiUrl}/process-prediction`, formData);

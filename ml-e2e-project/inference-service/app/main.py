@@ -12,7 +12,7 @@ class InputData(BaseModel):
     feature2: float
     feature3: float
 
-# Simulación de carga de modelo
+# Carga del modelo (simulado si no existe artefacto)
 MODEL_PATH = "models/model.pkl"
 model = None
 
@@ -24,8 +24,8 @@ def load_model():
             model = joblib.load(MODEL_PATH)
             print(f"Modelo cargado desde {MODEL_PATH}")
         else:
-            print("Modelo no encontrado, entrenando modelo dummy...")
-            # Entrenar un modelo dummy simple para que el servicio funcione
+            print("Artefacto no encontrado, entrenando modelo de ejemplo...")
+            # Entrenar modelo simple para disponibilidad del servicio
             X = np.array([[1, 1, 1], [2, 2, 2], [3, 3, 3]])
             y = np.array([2, 4, 6])
             model = LinearRegression()
@@ -40,9 +40,9 @@ def health_check():
 @app.post("/predict")
 def predict(data: InputData):
     if not model:
-        return {"error": "Model not loaded"}
+        return {"error": "Modelo no cargado"}
     
-    # Predicción simple
+    # Predicción
     input_features = [[data.feature1, data.feature2, data.feature3]]
     prediction = model.predict(input_features)
     
