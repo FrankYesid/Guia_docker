@@ -37,3 +37,10 @@ Este repositorio contiene el código y la configuración para un proyecto de ML 
    ```bash
    kubectl apply -f k8s/
    ```
+
+## Documentación
+- Frontend: [docs/frontend.md](file:///d:/GitHub/Guia_docker/ml-e2e-project/docs/frontend.md)
+- Backend: [docs/backend.md](file:///d:/GitHub/Guia_docker/ml-e2e-project/docs/backend.md)
+- Inference Service: [docs/inference-service.md](file:///d:/GitHub/Guia_docker/ml-e2e-project/docs/inference-service.md)
+- Kubernetes: [docs/k8s.md](file:///d:/GitHub/Guia_docker/ml-e2e-project/docs/k8s.md)
+- Docker/Compose: [docs/docker.md](file:///d:/GitHub/Guia_docker/ml-e2e-project/docs/docker.md)
