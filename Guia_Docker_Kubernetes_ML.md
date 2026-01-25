@@ -388,3 +388,4 @@ Un proyecto de IA exitoso no es solo un modelo con alta precisión, sino un prod
     - **Seguridad:** Mantén las imágenes base actualizadas, escanea en busca de vulnerabilidades y sigue el principio de mínimo privilegio.
 
 Dominar Docker y Kubernetes no es una opción, sino una necesidad para cualquier profesional de datos que aspire a construir y desplegar soluciones de IA robustas y de alto impacto.
+pendiente adjuntar version 2.0...
